@@ -77,2041 +77,36 @@
     
     <!-- Preload للعناصر الهامة -->
     <link rel="preload" href="imgs/بصمه-تك.webp" as="image">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700&family=Poppins:wght@300;400;500;600;700&display=swap" as="style">
-    
-    <!-- Fonts -->
+    <link rel="preload" href="css/style.min.css" as="style">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Fonts مع تحسين التحميل -->
+    <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    
+    <!-- Font Awesome مع تحسين -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="imgs/بصمه-تك.webp">
     <link rel="apple-touch-icon" href="imgs/بصمه-تك.webp">
     
+    <!-- CSS الرئيسي -->
+    <link rel="stylesheet" href="css/style.min.css">
+    
     <!-- Sitemap -->
     <link rel="sitemap" type="application/xml" href="/sitemap.xml">
     
-    <style>
-        /* CSS Variables with First Code Design */
-        :root {
-            /* ألوان الكود الأول */
-            --primary-color: #4f46e5;
-            --primary-dark: #4338ca;
-            --secondary-color: #f97316;
-            --accent-color: #10b981;
-            --success-color: #10b981;
-            --danger-color: #ef4444;
-            --gold-color: #FFD700;
-            
-            /* Backgrounds & Text */
-            --bg-color: #ffffff;
-            --card-bg: #ffffff;
-            --header-bg: rgba(255, 255, 255, 0.9);
-            --text-color: #111827;
-            --text-color-light: #4b5563;
-            --border-color: #e5e7eb;
-            
-            /* Shadows */
-            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-            --shadow-glow: 0 0 20px rgba(79, 70, 229, 0.15);
-            
-            /* Gradients */
-            --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            --gradient-secondary: linear-gradient(135deg, var(--secondary-color), #fb923c);
-            --gradient-accent: linear-gradient(135deg, var(--accent-color), #34d399);
-            --gradient-gold: linear-gradient(135deg, #FFD700, #FFA500);
-            
-            /* Spacing & Layout */
-            --border-radius: 1rem;
-            --border-radius-lg: 1.5rem;
-            --header-height: 70px;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* إصلاح: تعريف كامل للوضع الداكن */
-        body.dark-mode {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --header-bg: rgba(15, 23, 42, 0.9);
-            --text-color: #f8fafc;
-            --text-color-light: #94a3b8;
-            --border-color: #334155;
-            --primary-color: #6366f1;
-            --primary-dark: #4f46e5;
-            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
-            --shadow-glow: 0 0 25px rgba(99, 102, 241, 0.25);
-            --gradient-primary: linear-gradient(135deg, #6366f1, #4f46e5);
-        }
-
-        /* إصلاح: انتقال سلس للتغييرات */
-        * {
-            transition: background-color 0.3s ease, 
-                       color 0.3s ease, 
-                       border-color 0.3s ease,
-                       box-shadow 0.3s ease;
-        }
-
-        /* تحسين تحميل الخطوط */
-        @font-face {
-            font-display: swap;
-        }
-
-        /* Loading Screen محسن */
-        .loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--bg-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-        }
-
-        .loading-screen.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .loading-content {
-            text-align: center;
-        }
-
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid var(--primary-color);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 1rem;
-        }
-
-        .loading-text {
-            font-size: 1.2rem;
-            color: var(--primary-color);
-            font-weight: 600;
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        /* Progress Bar أثناء التحميل */
-        .progress-bar-container {
-            width: 200px;
-            height: 4px;
-            background: rgba(0,0,0,0.1);
-            border-radius: 2px;
-            margin: 1rem auto;
-            overflow: hidden;
-        }
-
-        .progress-bar {
-            height: 100%;
-            background: var(--gradient-primary);
-            width: 0%;
-            animation: loading 2s ease-in-out infinite;
-        }
-
-        @keyframes loading {
-            0% { width: 0%; }
-            100% { width: 100%; }
-        }
-
-        /* شريط التنقل العائم */
-        .floating-nav {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: var(--gradient-primary);
-            border-radius: 50px;
-            padding: 0.5rem;
-            display: flex;
-            gap: 0.5rem;
-            z-index: 998;
-            box-shadow: var(--shadow-lg);
-            transform: translateY(100px);
-            opacity: 0;
-            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-
-        .en .floating-nav {
-            right: auto;
-            left: 30px;
-        }
-
-        .floating-nav.visible {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .floating-nav a {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-            transition: var(--transition);
-        }
-
-        .floating-nav a:hover {
-            background: rgba(255,255,255,0.3);
-            transform: scale(1.1) rotate(10deg);
-        }
-
-        /* Badge إبداعية */
-        .badge {
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            background: var(--gradient-secondary);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            animation: bounce 2s infinite;
-            z-index: 1;
-            white-space: nowrap;
-        }
-
-        .badge-gold {
-            background: var(--gradient-gold);
-            color: #000;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0) rotate(-2deg); }
-            50% { transform: translateY(-10px) rotate(2deg); }
-        }
-
-        /* مؤشر التمرير */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            opacity: 0.7;
-            animation: fadeInOut 2s infinite;
-        }
-
-        .scroll-text {
-            font-size: 0.9rem;
-            color: var(--text-color-light);
-        }
-
-        .scroll-icon {
-            width: 30px;
-            height: 50px;
-            border: 2px solid var(--primary-color);
-            border-radius: 15px;
-            position: relative;
-        }
-
-        .scroll-icon:before {
-            content: '';
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 4px;
-            height: 10px;
-            background: var(--primary-color);
-            border-radius: 2px;
-            animation: scroll 2s infinite;
-        }
-
-        @keyframes scroll {
-            0% { transform: translateX(-50%) translateY(0); opacity: 1; }
-            100% { transform: translateX(-50%) translateY(20px); opacity: 0; }
-        }
-
-        @keyframes fadeInOut {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
-        }
-
-        /* تأثيرات إبداعية */
-        .float-animation {
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .pulse-animation {
-            animation: pulse 2s infinite;
-        }
-
-        .shake-animation:hover {
-            animation: shake 0.5s;
-        }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-            20%, 40%, 60%, 80% { transform: translateX(5px); }
-        }
-
-        /* تأثيرات النصوص */
-        .typing-text {
-            overflow: hidden;
-            border-right: 3px solid var(--primary-color);
-            white-space: nowrap;
-            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
-        }
-
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-
-        @keyframes blink-caret {
-            from, to { border-color: transparent; }
-            50% { border-color: var(--primary-color); }
-        }
-
-        /* تأثيرات الكروت */
-        .card-hover-3d {
-            transform-style: preserve-3d;
-            transition: transform 0.5s, box-shadow 0.5s;
-        }
-
-        .card-hover-3d:hover {
-            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
-            box-shadow: var(--shadow-glow);
-        }
-
-        /* تأثير الألعاب النارية */
-        .fireworks {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 10000;
-            display: none;
-        }
-
-        .firework {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            animation: explode 1s forwards;
-        }
-
-        @keyframes explode {
-            0% { 
-                transform: translateY(100vh) scale(0); 
-                opacity: 1;
-            }
-            100% { 
-                transform: translateY(var(--explode-y)) scale(1); 
-                opacity: 0;
-            }
-        }
-
-        /* عداد تنازلي */
-        .countdown-container {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin: 2rem 0;
-        }
-
-        .countdown-item {
-            background: var(--gradient-primary);
-            color: white;
-            padding: 1rem;
-            border-radius: var(--border-radius);
-            text-align: center;
-            min-width: 80px;
-            box-shadow: var(--shadow-md);
-        }
-
-        .countdown-value {
-            font-size: 2rem;
-            font-weight: 800;
-            line-height: 1;
-        }
-
-        .countdown-label {
-            font-size: 0.8rem;
-            opacity: 0.9;
-        }
-
-        /* تأثيرات الإبهار */
-        .sparkle {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: var(--gold-color);
-            border-radius: 50%;
-            pointer-events: none;
-            opacity: 0;
-            animation: sparkle 1s ease-out forwards;
-        }
-
-        @keyframes sparkle {
-            0% { 
-                transform: scale(0) rotate(0deg); 
-                opacity: 1;
-            }
-            100% { 
-                transform: scale(1) rotate(360deg); 
-                opacity: 0;
-            }
-        }
-
-        /* Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: var(--header-height);
-        }
-
-        body {
-            font-family: 'Tajawal', sans-serif;
-            color: var(--text-color);
-            background-color: var(--bg-color);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        .en {
-            font-family: 'Poppins', sans-serif;
-            direction: ltr;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        section {
-            padding: clamp(4rem, 8vw, 6rem) 0;
-            position: relative;
-        }
-
-        /* Typography */
-        h1, h2, h3, h4, h5 {
-            font-family: 'El Messiri', sans-serif;
-            font-weight: 700;
-            line-height: 1.2;
-            color: var(--text-color);
-        }
-
-        body.en h1, body.en h2, body.en h3 {
-            font-family: 'Poppins', sans-serif;
-        }
-
-        h1 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            margin-bottom: 1rem;
-        }
-
-        h2 {
-            font-size: clamp(1.75rem, 4vw, 2.5rem);
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        h2:after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: var(--primary-color);
-            margin: 10px auto 0;
-            border-radius: 2px;
-        }
-
-        .en h2:after {
-            margin: 10px 0 0;
-        }
-
-        h3 {
-            font-size: clamp(1.5rem, 3vw, 2rem);
-            margin-bottom: 0.75rem;
-        }
-
-        p {
-            color: var(--text-color-light);
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: var(--transition);
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            content-visibility: auto;
-            contain-intrinsic-size: 1px 1000px;
-        }
-
-        /* Buttons */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            padding: 0.75rem 2rem;
-            border-radius: 9999px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: var(--transition);
-            border: none;
-            background: var(--gradient-primary);
-            color: white;
-            box-shadow: var(--shadow-md);
-            min-height: 48px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: 0.5s;
-        }
-
-        .btn:hover:before {
-            left: 100%;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
-            box-shadow: none;
-        }
-
-        .btn-secondary:hover {
-            background: var(--primary-color);
-            color: white;
-        }
-
-        .btn-whatsapp {
-            background: #25D366;
-            color: white;
-        }
-
-        .btn-whatsapp:hover {
-            background: #128C7E;
-            transform: translateY(-3px) scale(1.05);
-        }
-
-        /* Header & Navigation */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: var(--header-height);
-            background: var(--header-bg);
-            backdrop-filter: blur(12px);
-            z-index: 1000;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            transition: var(--transition);
-        }
-
-        header.scrolled {
-            height: 60px;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary-color);
-        }
-
-        .logo img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            animation: spin 20s linear infinite;
-        }
-
-        .mobile-menu-btn {
-            display: block;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--text-color);
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        /* Mobile Menu */
-        nav {
-            position: fixed;
-            top: var(--header-height);
-            right: -100%;
-            width: 80% ;
-            max-width: auto;
-            height: calc(100vh - var(--header-height));
-            background: var(--card-bg);
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-            transition: var(--transition);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .en nav {
-            right: auto;
-            left: -100%;
-        }
-
-        nav.active {
-            right: 0;
-        }
-
-        .en nav.active {
-            left: 0;
-        }
-
-        nav ul {
-            display: flex;
-            width: 100%;
-            flex-direction: column;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        nav a {
-            font-weight: 500;
-            font-size: 1.1rem;
-            padding: 0.5rem 1rem;
-            display: block;
-            border-radius: 20px;
-            transition: var(--transition);
-        }
-
-        nav a:hover, nav a.active {
-            background: rgba(79, 70, 229, 0.1);
-            color: var(--primary-color);
-            transform: translateX(-5px);
-        }
-
-        .en nav a:hover, .en nav a.active {
-            transform: translateX(5px);
-        }
-
-        nav a.active {
-            background: var(--primary-color);
-            color: white;
-        }
-
-        /* Header Controls */
-        .header-controls {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .icon-btn {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            color: var(--text-color);
-            transition: var(--transition);
-        }
-
-        .icon-btn:hover {
-            border-color: var(--primary-color);
-            color: var(--primary-color);
-            transform: rotate(15deg);
-        }
-
-        /* Desktop Nav */
-        @media (min-width: 992px) {
-            .mobile-menu-btn {
-                display: none;
-            }
-            
-            nav {
-                position: static;
-                width: auto;
-                height: auto;
-                background: transparent;
-                padding: 0;
-                flex-direction: row;
-                box-shadow: none;
-                gap: 0.5rem;
-            }
-            
-            nav ul {
-                flex-direction: row;
-                gap: 0.5rem;
-            }
-            
-            nav a {
-                padding: 0.5rem 1rem;
-            }
-        }
-
-        /* Hero Section */
-        .hero {
-            padding-top: calc(var(--header-height) + 3rem);
-            background: linear-gradient(180deg, rgba(79, 70, 229, 0.05) 0%, transparent 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-        }
-
-        .hero-content {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        @media (min-width: 992px) {
-            .hero-content {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        .hero-text {
-            text-align: right;
-            position: relative;
-        }
-
-        .en .hero-text {
-            text-align: left;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: var(--gradient-secondary);
-            color: white;
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            animation: pulse 2s infinite;
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 2rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-        }
-
-        .stat-item {
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            padding: 1rem;
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            min-width: 120px;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--primary-color);
-            line-height: 1;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--text-color-light);
-        }
-
-        .hero-btns {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-
-        .hero-image {
-            position: relative;
-            border-radius: var(--border-radius-lg);
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .hero-image img {
-            width: 100%;
-            height: auto;
-            transition: transform 0.5s;
-        }
-
-        .hero-image:hover img {
-            transform: scale(1.05);
-        }
-
-        /* Services Section */
-        .section-title {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto 4rem;
-        }
-
-        .section-title h2:after {
-            margin: 10px auto 0;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: var(--border-radius);
-            border: 1px solid var(--border-color);
-            transition: var(--transition);
-            box-shadow: var(--shadow-sm);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-glow);
-            border-color: var(--primary-color);
-        }
-
-        .service-card:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--gradient-primary);
-            transform: scaleX(0);
-            transition: transform 0.3s;
-        }
-
-        .service-card:hover:before {
-            transform: scaleX(1);
-        }
-
-        .service-icon {
-            width: 60px;
-            height: 60px;
-            background: rgba(79, 70, 229, 0.1);
-            color: var(--primary-color);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.75rem;
-            margin-bottom: 1.5rem;
-            transition: var(--transition);
-        }
-
-        .service-card:hover .service-icon {
-            background: var(--gradient-primary);
-            color: white;
-            transform: rotate(15deg) scale(1.1);
-        }
-
-        .service-features {
-            text-align: right;
-        }
-
-        .en .service-features {
-            text-align: left;
-        }
-
-        .service-features li {
-            position: relative;
-            padding-right: 1.5rem;
-            margin-bottom: 0.5rem;
-            font-size: 0.95rem;
-            color: var(--text-color-light);
-            transition: var(--transition);
-        }
-
-        .en .service-features li {
-            padding-right: 0;
-            padding-left: 1.5rem;
-        }
-
-        .service-features li:hover {
-            color: var(--primary-color);
-            padding-right: 2rem;
-        }
-
-        .en .service-features li:hover {
-            padding-right: 0;
-            padding-left: 2rem;
-        }
-
-        .service-features li:before {
-            content: '✓';
-            color: var(--accent-color);
-            position: absolute;
-            right: 0;
-            font-weight: bold;
-            transition: var(--transition);
-        }
-
-        .en .service-features li:before {
-            right: auto;
-            left: 0;
-        }
-
-        /* Portfolio Section */
-        .portfolio {
-            background-color: rgba(79, 70, 229, 0.03);
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .portfolio-item {
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--shadow-md);
-            transition: var(--transition);
-            cursor: pointer;
-            position: relative;
-        }
-
-        .portfolio-item:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .portfolio-img {
-            height: 220px;
-            overflow: hidden;
-        }
-
-        .portfolio-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .portfolio-item:hover .portfolio-img img {
-            transform: scale(1.1);
-        }
-
-        .portfolio-content {
-            padding: 1.5rem;
-        }
-
-        .portfolio-tags {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .portfolio-tag {
-            font-size: 0.75rem;
-            padding: 0.25rem 0.75rem;
-            background: rgba(79, 70, 229, 0.1);
-            color: var(--primary-color);
-            border-radius: 20px;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        .portfolio-item:hover .portfolio-tag {
-            background: var(--primary-color);
-            color: white;
-        }
-
-        /* Testimonials Section */
-        .testimonials {
-            background: linear-gradient(135deg, rgba(79, 70, 229, 0.05), rgba(16, 185, 129, 0.05));
-        }
-
-        .testimonials-slider {
-            position: relative;
-            overflow: hidden;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .testimonial-slide {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: var(--border-radius-lg);
-            box-shadow: var(--shadow-md);
-            border: 1px solid var(--border-color);
-            margin: 1rem;
-            text-align: center;
-        }
-
-        .client-avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            margin: 0 auto 1rem;
-            overflow: hidden;
-            border: 3px solid var(--primary-color);
-        }
-
-        .client-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .client-rating {
-            color: #fbbf24;
-            margin: 1rem 0;
-        }
-
-        .testimonial-text {
-            font-style: italic;
-            margin-bottom: 1rem;
-            position: relative;
-        }
-
-        .testimonial-text:before,
-        .testimonial-text:after {
-            content: '"';
-            color: var(--primary-color);
-            font-size: 2rem;
-            opacity: 0.3;
-        }
-
-        /* قسم العروض الخاصة */
-        .special-offers {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            color: white;
-            text-align: center;
-            padding: 4rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .special-offers:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0,0V100H1000V0C800,50 200,50 0,0Z" fill="rgba(255,255,255,0.1)"/></svg>');
-            background-size: cover;
-        }
-
-        .offer-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .offer-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: var(--border-radius-lg);
-            padding: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: var(--transition);
-        }
-
-        .offer-card:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .offer-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: var(--gold-color);
-        }
-
-        /* قسم الإنجازات */
-        .achievements {
-            background: var(--bg-color);
-        }
-
-        .achievements-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .achievement-item {
-            text-align: center;
-            padding: 2rem;
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-md);
-            transition: var(--transition);
-        }
-
-        .achievement-item:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-glow);
-        }
-
-        .achievement-icon {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        /* About Section */
-        .about-content {
-            display: flex;
-            flex-direction: column;
-            gap: 3rem;
-            justify-content: center;
-            align-items: center;
-        }
-
-        @media (min-width: 992px) {
-            .about-content {
-                flex-direction: row;
-                align-items: center;
-            }
-            .about-image img {
-                max-width: 700px;
-            }
-        }
-
-        .about-features {
-            margin-top: 2rem;
-        }
-
-        .feature-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-left: 1rem;
-        }
-
-        .feature-item:before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: var(--gradient-primary);
-            border-radius: 2px;
-        }
-
-        .feature-icon {
-            min-width: 70px;
-            height: 70px;
-            background-color: rgba(79, 70, 229, 0.1);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-left: 1.5rem;
-            color: var(--primary-color);
-            font-size: 1.5rem;
-            transition: var(--transition);
-        }
-
-        .en .feature-icon {
-            margin-left: 0;
-            margin-right: 1.5rem;
-        }
-
-        .feature-item:hover .feature-icon {
-            background: var(--gradient-primary);
-            color: white;
-            transform: rotate(15deg);
-        }
-
-        .feature-text h4 {
-            margin-bottom: 0.5rem;
-        }
-
-        .about-image img {
-            border-radius: var(--border-radius-lg);
-            box-shadow: var(--shadow-lg);
-            border: 8px solid var(--card-bg);
-        }
-
-        .footer-links h4, .footer-services h4 {
-            font-size: 25px;
-        }
-        .contact-details h4 {
-            font-size: 20px;
-        }
-
-        /* CTA Banner */
-        .cta-banner {
-            background: var(--gradient-primary);
-            color: white;
-            text-align: center;
-            border-radius: var(--border-radius-lg);
-            padding: 4rem 2rem;
-            margin: 0 1.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-banner:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0,0V100H1000V0C800,50 200,50 0,0Z" fill="rgba(255,255,255,0.1)"/></svg>');
-            background-size: cover;
-        }
-
-        .cta-banner h2 {
-            color: white;
-        }
-
-        .cta-banner h2:after {
-            background: white;
-        }
-
-        .cta-banner p {
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .cta-banner .btn {
-            background: white;
-            color: var(--primary-color);
-        }
-
-        .cta-banner .btn:hover {
-            background: #f0f0f0;
-        }
-
-        .cta-btns {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-
-        /* قسم الأسئلة الشائعة */
-        .faq-section {
-            background: var(--bg-color);
-        }
-
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            margin-bottom: 1rem;
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid var(--border-color);
-        }
-
-        .faq-question {
-            padding: 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        .faq-question:hover {
-            background: rgba(79, 70, 229, 0.05);
-        }
-
-        .faq-answer {
-            padding: 0 1.5rem;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-
-        .faq-item.active .faq-answer {
-            padding: 0 1.5rem 1.5rem;
-            max-height: 500px;
-        }
-
-        .faq-item.active .faq-question i {
-            transform: rotate(45deg);
-        }
-
-        /* Contact Section */
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 0;
-            background: var(--card-bg);
-            border-radius: var(--border-radius-lg);
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid var(--border-color);
-        }
-
-        @media (min-width: 992px) {
-            .contact-container {
-                grid-template-columns: 2fr 3fr;
-            }
-        }
-
-        .contact-info {
-            background: var(--primary-color);
-            color: white;
-            padding: 3rem 2rem;
-            position: relative;
-        }
-
-        .contact-info h3 {
-            color: white;
-            margin-bottom: 2rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-icon {
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-        }
-
-        .contact-item:hover .contact-icon {
-            background: rgba(255, 255, 255, 0.3);
-            transform: rotate(15deg);
-        }
-
-        .contact-social {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-            justify-content: center;
-        }
-
-        .contact-social a {
-            width: 55px;
-            height: 55px;
-            font-size: 25px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            transition: var(--transition);
-        }
-
-        .contact-social a:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-3px) scale(1.1);
-        }
-
-        .contact-form {
-            padding: 3rem 2rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 0.875rem;
-            border-radius: 0.75rem;
-            border: 1px solid var(--border-color);
-            background: var(--bg-color);
-            color: var(--text-color);
-            font-family: inherit;
-            transition: var(--transition);
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
-            transform: translateY(-2px);
-        }
-
-        textarea.form-control {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        /* Footer */
-        footer {
-            background: #0f172a;
-            color: #f1f5f9;
-            padding-top: 4rem;
-            padding-bottom: 2rem;
-            position: relative;
-        }
-
-        footer:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient-primary);
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: white;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .footer-logo img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-        }
-
-        .footer-links h4,
-        .footer-services h4 {
-            color: white;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-links a,
-        .footer-services a {
-            color: #94a3b8;
-            display: block;
-            margin-bottom: 0.75rem;
-            transition: 0.2s;
-        }
-
-        .footer-links a:hover,
-        .footer-services a:hover {
-            color: var(--primary-color);
-            padding-right: 5px;
-        }
-
-        .en .footer-links a:hover,
-        .en .footer-services a:hover {
-            padding-right: 0;
-            padding-left: 5px;
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .footer-social a {
-            width: 55px;
-            height: 55px;
-            text-align-last: center;
-            font-size: 25px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            transition: var(--transition);
-        }
-
-        .footer-social a:hover {
-            background: var(--primary-color);
-            transform: translateY(-3px) rotate(15deg);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #334155;
-            padding-top: 2rem;
-            text-align: center;
-            color: #64748b;
-            font-size: 0.9rem;
-        }
-
-        /* Project Modal */
-        .project-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 2000;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            padding: 1rem;
-        }
-
-        .project-modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: var(--card-bg);
-            width: 100%;
-            max-width: 900px;
-            max-height: 90vh;
-            overflow-y: auto;
-            border-radius: var(--border-radius-lg);
-            position: relative;
-            transform: translateY(20px);
-            transition: var(--transition);
-        }
-
-        .project-modal.active .modal-content {
-            transform: translateY(0);
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 2rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .modal-close {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--text-color);
-            cursor: pointer;
-            transition: var(--transition);
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-        }
-
-        .modal-close:hover {
-            background: rgba(0, 0, 0, 0.1);
-            color: var(--primary-color);
-            transform: rotate(90deg);
-        }
-
-        .modal-body {
-            padding: 2rem;
-        }
-
-        .project-overview {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-        }
-
-        @media (min-width: 768px) {
-            .project-overview {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        .main-image {
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-        }
-
-        .main-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .image-gallery {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .gallery-item {
-            border-radius: 0.5rem;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 80px;
-            object-fit: cover;
-        }
-
-        .project-stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            margin: 1.5rem 0;
-        }
-
-        .stat-box {
-            background: var(--gradient-primary);
-            color: white;
-            padding: 1rem;
-            border-radius: var(--border-radius);
-            text-align: center;
-            transition: var(--transition);
-        }
-
-        .stat-box:hover {
-            transform: scale(1.05);
-        }
-
-        .stat-box .number {
-            font-size: 1.5rem;
-            font-weight: 800;
-            line-height: 1;
-            margin-bottom: 0.25rem;
-        }
-
-        .stat-box .label {
-            font-size: 0.8rem;
-        }
-
-        .project-info ul {
-            margin-top: 1rem;
-        }
-
-        .project-info li {
-            position: relative;
-            padding-right: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-color-light);
-        }
-
-        .en .project-info li {
-            padding-right: 0;
-            padding-left: 1.5rem;
-        }
-
-        .project-info li:before {
-            content: '✓';
-            color: var(--accent-color);
-            position: absolute;
-            right: 0;
-            font-weight: bold;
-        }
-
-        .en .project-info li:before {
-            right: auto;
-            left: 0;
-        }
-
-        /* Back to Top Button */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: var(--gradient-primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            box-shadow: var(--shadow-lg);
-            cursor: pointer;
-            transition: var(--transition);
-            z-index: 999;
-            opacity: 0;
-            transform: translateY(20px);
-            visibility: hidden;
-        }
-
-        .back-to-top.visible {
-            opacity: 1;
-            transform: translateY(0);
-            visibility: visible;
-        }
-
-        .back-to-top:hover {
-            background: var(--gradient-secondary);
-            transform: translateY(-3px) rotate(15deg);
-        }
-
-        .en .back-to-top {
-            right: auto;
-            left: 30px;
-        }
-
-        /* Toast Notifications */
-        .toast-container {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            z-index: 3000;
-        }
-
-        .toast {
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: 1rem 1.5rem;
-            margin-bottom: 0.5rem;
-            box-shadow: var(--shadow-lg);
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            animation: slideIn 0.3s ease-out;
-            border-right: 4px solid var(--primary-color);
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateX(-100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        .toast-icon {
-            color: var(--primary-color);
-            font-size: 1.2rem;
-        }
-
-        .toast-content {
-            flex: 1;
-        }
-
-        .toast-title {
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-            color: var(--text-color);
-        }
-
-        .toast-message {
-            color: var(--text-color-light);
-            font-size: 0.9rem;
-        }
-
-        .toast-close {
-            background: none;
-            border: none;
-            color: var(--text-color-light);
-            cursor: pointer;
-            padding: 0.25rem;
-        }
-
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Responsive Styles */
-        @media (max-width: 768px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .hero-text {
-                text-align: center;
-            }
-            
-            .en .hero-text {
-                text-align: center;
-            }
-            
-            .hero-stats {
-                justify-content: center;
-            }
-            
-            .hero-btns {
-                justify-content: center;
-            }
-            
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .cta-btns {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .cta-banner {
-                margin: 0 1rem;
-                padding: 3rem 1rem;
-            }
-            
-            .project-overview {
-                grid-template-columns: 1fr;
-            }
-            
-            .image-gallery {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            
-            .gallery-item img {
-                height: 60px;
-            }
-            
-            .back-to-top {
-                width: 45px;
-                height: 45px;
-                bottom: 20px;
-                right: 20px;
-                font-size: 1rem;
-            }
-            
-            .en .back-to-top {
-                left: 20px;
-            }
-            
-            .floating-nav {
-                right: 15px;
-                bottom: 15px;
-            }
-            
-            .en .floating-nav {
-                left: 15px;
-            }
-            
-            .countdown-container {
-                flex-wrap: wrap;
-            }
-            
-            .countdown-item {
-                min-width: 70px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 1.75rem;
-            }
-            
-            h2 {
-                font-size: 1.5rem;
-            }
-            
-            .container {
-                padding: 0 1rem;
-            }
-            
-            .hero-stats {
-                flex-direction: column;
-                align-items: center;
-                gap: 1rem;
-            }
-            
-            .hero-btns {
-                flex-direction: column;
-            }
-            
-            .btn {
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .services-grid,
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .image-gallery {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .project-stats {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            
-            .floating-nav {
-                display: none;
-            }
-            
-            .countdown-container {
-                gap: 0.5rem;
-            }
-            
-            .countdown-item {
-                padding: 0.5rem;
-                min-width: 60px;
-            }
-            
-            .countdown-value {
-                font-size: 1.5rem;
-            }
-        }
-
-        /* Accessibility */
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
-        }
-
-        /* Focus Styles */
-        *:focus {
-            outline: 2px solid var(--primary-color);
-            outline-offset: 2px;
-        }
-
-        *:focus:not(.focus-visible) {
-            outline: none;
-        }
-    </style>
+    <!-- CSS للعناصر غير الحرجة -->
+    <link rel="stylesheet" href="css/effects.css" media="print" onload="this.media='all'">
 </head>
 
 <body class="ar">
-    <!-- Loading Screen -->
+    <!-- Loading Screen مبسط -->
     <div class="loading-screen" id="loadingScreen">
         <div class="loading-content">
             <div class="spinner"></div>
-            <div class="progress-bar-container">
-                <div class="progress-bar"></div>
-            </div>
-            <div class="loading-text">
-                <span class="ar-text">بنحضر تجربتك الرائعة...</span>
-                <span class="en-text" style="display: none;">Preparing your amazing experience...</span>
-            </div>
+            <div class="loading-text">جاري التحميل...</div>
         </div>
     </div>
 
@@ -2141,7 +136,7 @@
     <header>
         <div class="container header-container">
             <a href="#" class="logo">
-                <img src="./imgs/بصمه-تك.webp" alt="بصمة تك - شعار الشركة" loading="lazy">
+                <img src="./imgs/بصمه-تك.webp" alt="بصمة تك - شعار الشركة" loading="lazy" width="40" height="40">
                 <span class="ar-text">بصمة تك</span>
                 <span class="en-text" style="display: none;">Basma Tech</span>
             </a>
@@ -2165,7 +160,7 @@
                             <span class="en-text" style="display: none;">Portfolio 🎨</span>
                         </a></li>
                     <li><a href="#about" class="nav-link">
-                            <span class="ar-text">ليه نحنا؟ 🤔</span>
+                            <span class="ar-text">ليه إحنا؟ 🤔</span>
                             <span class="en-text" style="display: none;">Why Us? 🤔</span>
                         </a></li>
                     <li><a href="#contact" class="nav-link">
@@ -2254,7 +249,7 @@
                 </div>
                 
                 <div class="hero-image fade-in">
-                    <img src="imgs/بصمه-تك.jpg" alt="فريق بصمة تك المحترف - شركة برمجة مصرية" loading="lazy">
+                    <img src="imgs/بصمه-تك.jpg" alt="فريق بصمة تك المحترف - شركة برمجة مصرية" loading="lazy" width="600" height="400">
                 </div>
             </div>
             
@@ -2494,14 +489,14 @@
                 </h2>
                 <p>
                     <span class="ar-text">أعمالنا بتتكلم عنا... شوف إزاي غيرنا حياة عملائنا! 😎</span>
-                    <span class="en-text" style="display: none;">Our work speaks for itself... See how we changed our clients' lives! 😎</span>
-                </p>
+                        <span class="en-text" style="display: none;">Our work speaks for itself... See how we changed our clients' lives! 😎</span>
+                    </p>
             </div>
 
             <div class="portfolio-grid">
                 <div class="portfolio-item fade-in card-hover-3d">
                     <div class="portfolio-img">
-                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&q=80" alt="متجر إلكتروني متكامل - تصميم مواقع مصر" loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&q=80" alt="متجر إلكتروني متكامل - تصميم مواقع مصر" loading="lazy" width="800" height="600">
                     </div>
                     <div class="portfolio-content">
                         <div class="portfolio-tags">
@@ -2526,7 +521,7 @@
                         <span class="en-text" style="display: none;">Big Success! 🏆</span>
                     </div>
                     <div class="portfolio-img">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" alt="مشروع تحسين SEO - ألوميتال" loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" alt="مشروع تحسين SEO - ألوميتال" loading="lazy" width="800" height="600">
                     </div>
                     <div class="portfolio-content">
                         <div class="portfolio-tags">
@@ -2547,7 +542,7 @@
 
                 <div class="portfolio-item fade-in card-hover-3d">
                     <div class="portfolio-img">
-                        <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&q=80" alt="حملة إعلانات فيسبوك - تسويق رقمي مصر" loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&q=80" alt="حملة إعلانات فيسبوك - تسويق رقمي مصر" loading="lazy" width="800" height="600">
                     </div>
                     <div class="portfolio-content">
                         <div class="portfolio-tags">
@@ -2585,17 +580,17 @@
                 <div class="project-overview">
                     <div class="project-images">
                         <div class="main-image">
-                            <img src="imgs/pro-al/1.png" alt="موقع أعمال الألوميتال بعد التحسين - تصميم مواقع مصر" loading="lazy">
+                            <img src="imgs/pro-al/1.png" alt="موقع أعمال الألوميتال بعد التحسين - تصميم مواقع مصر" loading="lazy" width="800" height="600">
                         </div>
                         <div class="image-gallery">
                             <div class="gallery-item">
-                                <img src="imgs/pro-al/2.png" alt="تحليل الكلمات المفتاحية - SEO مصر" loading="lazy">
+                                <img src="imgs/pro-al/2.png" alt="تحليل الكلمات المفتاحية - SEO مصر" loading="lazy" width="200" height="150">
                             </div>
                             <div class="gallery-item">
-                                <img src="imgs/pro-al/3.png" alt="تحسين المحتوى - شركة تسويق رقمي" loading="lazy">
+                                <img src="imgs/pro-al/3.png" alt="تحسين المحتوى - شركة تسويق رقمي" loading="lazy" width="200" height="150">
                             </div>
                             <div class="gallery-item">
-                                <img src="imgs/pro-al/4.png" alt="نتائج التحسين - برمجة مواقع" loading="lazy">
+                                <img src="imgs/pro-al/4.png" alt="نتائج التحسين - برمجة مواقع" loading="lazy" width="200" height="150">
                             </div>
                         </div>
                     </div>
@@ -2669,47 +664,265 @@
         </div>
     </div>
 
-    <!-- Testimonials Section -->
-    <section class="testimonials">
-        <div class="container">
-            <div class="section-title fade-in">
-                <h2>
-                    <span class="ar-text">عملائنا بيقولوا إيه عنّا؟ 🗣️</span>
-                    <span class="en-text" style="display: none;">What Our Clients Say About Us? 🗣️</span>
-                </h2>
-                <p>
-                    <span class="ar-text">شوف تجربة العملاء اللي وثقوا فيا وأديهم الفرصة يحكولك بنفسهم! 😊</span>
-                    <span class="en-text" style="display: none;">See the experience of clients who trusted us and let them tell you themselves! 😊</span>
-                </p>
+  <!-- قسم آراء العملاء الجديد -->
+<section class="testimonials-section" id="testimonials">
+    <div class="container">
+        <div class="section-title fade-in">
+            <h2>
+                <span class="ar-text">📢 آراء العملاء <span class="highlight">اللي غيروا تجارتهم</span> معانا!</span>
+                <span class="en-text" style="display: none;">📢 Customer Reviews Who <span class="highlight">Transformed Their Business</span> With Us!</span>
+            </h2>
+            <p>
+                <span class="ar-text">مش بس كلام... ده واقع! شوف إيه اللي قاله عملائنا اللي نجحوا مع بصمة تك ✨</span>
+                <span class="en-text" style="display: none;">Not just talk... it's reality! See what our successful clients said about Basma Tech ✨</span>
+            </p>
+        </div>
+
+        <!-- ستايل احترافي جديد -->
+        <div class="testimonials-wrapper">
+            <!-- عميل 1 - الشهادة الأساسية -->
+            <div class="testimonial-main-card">
+                <div class="testimonial-badge">✨ شهادة النجم الأول</div>
+                <div class="client-profile">
+                    <div class="client-avatar-wrapper">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face" alt="أحمد محمود - مدير شركة ألوميتال" loading="lazy" width="120" height="120">
+                        <div class="client-status">
+                            <div class="online-dot"></div>
+                            <span class="status-text">عميل متعاون</span>
+                        </div>
+                    </div>
+                    <div class="client-info">
+                        <h3>أحمد محمود <span class="verified-badge"><i class="fas fa-check-circle"></i> موثق</span></h3>
+                        <p class="client-role">👨‍💼 مدير شركة ألوميتال</p>
+                        <div class="client-meta">
+                            <span class="meta-item"><i class="fas fa-calendar"></i> منذ 3 أشهر</span>
+                            <span class="meta-item"><i class="fas fa-map-marker-alt"></i> القاهرة، مصر</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-content">
+                    <div class="quote-icon">❝</div>
+                    <p class="testimonial-text">
+                        "من أحلى القرارات اللي أخذتها في حياتي العملية اني تعاملت مع بصمة تك! الموقع بقى رقم واحد في جوجل والمبيعات تضاعفت 3 مرات! الفريق كان متابع معايا خطوة بخطوة ومفيش حاجة اتقالت ومتطبقتش. بصراحة، نادر ما تلاقي شركة بتتعهد وتنفذ اللي بتحكيه!"
+                    </p>
+                    <div class="testimonial-footer">
+                        <div class="project-info">
+                            <span class="project-tag"><i class="fas fa-code"></i> موقع ويب + SEO</span>
+                            <span class="project-result">📈 +300% مبيعات</span>
+                        </div>
+                        <button class="view-project-btn" data-client="ahmed">
+                            <i class="fas fa-external-link-alt"></i> شوف المشروع
+                        </button>
+                    </div>
+                </div>
+
+                <div class="testimonial-stats">
+                    <div class="stat-item">
+                        <div class="stat-icon">🎯</div>
+                        <div class="stat-details">
+                            <span class="stat-value">20</span>
+                            <span class="stat-label">كلمة مفتاحية</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-details">
+                            <span class="stat-value">300%</span>
+                            <span class="stat-label">زيادة حركة</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">💰</div>
+                        <div class="stat-details">
+                            <span class="stat-value">3x</span>
+                            <span class="stat-label">نمو المبيعات</span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="testimonials-slider fade-in">
-                <div class="testimonial-slide">
-                    <div class="client-avatar">
-                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop" alt="عميل بصمة تك - أحمد محمود" loading="lazy">
+            <!-- شبكة الشهادات الصغيرة -->
+            <div class="testimonials-grid">
+                <!-- عميل 2 -->
+                <div class="testimonial-card card-hover-3d">
+                    <div class="client-header">
+                        <div class="client-avatar-small">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b786d4d1?w=150&h=150&fit=crop&crop=face" alt="سارة خالد" loading="lazy" width="60" height="60">
+                        </div>
+                        <div class="client-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="rating-number">5.0</span>
+                        </div>
                     </div>
-                    <div class="client-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="testimonial-text">
-                        <p>
-                            <span class="ar-text">"من أحلى القرارات اللي أخذتها في حياتي العملية اني تعاملت مع بصمة تك! الموقع بقى رقم واحد في جوجل والمبيعات تضاعفت 3 مرات! الفريق كان متابع معايا خطوة بخطوة ومفيش حاجة اتقالت ومتطبقتش."</span>
-                            <span class="en-text" style="display: none;">"One of the best decisions I've made in my professional life was dealing with Basma Tech! The site became number one on Google and sales tripled! The team followed up with me step by step and nothing promised was left undone."</span>
-                        </p>
-                    </div>
-                    <h4>أحمد محمود</h4>
-                    <p class="client-position">
-                        <span class="ar-text">مدير شركة ألوميتال</span>
-                        <span class="en-text" style="display: none;">Aluminum Company Manager</span>
+                    <p class="testimonial-excerpt">
+                        "موقع متجر الأزياء اللي صمموه لي غير حياتي! المبيعات زادت 200% في أول شهر 🛍️"
                     </p>
+                    <div class="client-details">
+                        <h4>سارة خالد</h4>
+                        <p class="client-position">👗 صاحبة متجر أزياء</p>
+                    </div>
+                </div>
+
+                <!-- عميل 3 -->
+                <div class="testimonial-card card-hover-3d">
+                    <div class="client-header">
+                        <div class="client-avatar-small">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" alt="محمد علي" loading="lazy" width="60" height="60">
+                        </div>
+                        <div class="client-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span class="rating-number">4.5</span>
+                        </div>
+                    </div>
+                    <p class="testimonial-excerpt">
+                        "إعلانات فيسبوك الذكية اللي عمليها بصمة تك خلت طلبات المطعم تزيد 150% 🍕🔥"
+                    </p>
+                    <div class="client-details">
+                        <h4>محمد علي</h4>
+                        <p class="client-position">🍕 صاحب مطعم إيطالي</p>
+                    </div>
+                </div>
+
+                <!-- عميل 4 -->
+                <div class="testimonial-card card-hover-3d">
+                    <div class="client-header">
+                        <div class="client-avatar-small">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face" alt="ياسمين فؤاد" loading="lazy" width="60" height="60">
+                        </div>
+                        <div class="client-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="rating-number">5.0</span>
+                        </div>
+                    </div>
+                    <p class="testimonial-excerpt">
+                        "من أفضل الخدمات في السوق المصري! محتوى السوشيال ميديا اللي بيقدموه تحفة ✨"
+                    </p>
+                    <div class="client-details">
+                        <h4>ياسمين فؤاد</h4>
+                        <p class="client-position">💄 خبيرة تجميل</p>
+                    </div>
+                </div>
+
+                <!-- عميل 5 -->
+                <div class="testimonial-card card-hover-3d">
+                    <div class="client-header">
+                        <div class="client-avatar-small">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face" alt="خالد وليد" loading="lazy" width="60" height="60">
+                        </div>
+                        <div class="client-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="rating-number">5.0</span>
+                        </div>
+                    </div>
+                    <p class="testimonial-excerpt">
+                        "السرعة في التنفيذ والدقة في العمل شيء مذهل! فريق محترف بمعنى الكلمة ⚡"
+                    </p>
+                    <div class="client-details">
+                        <h4>خالد وليد</h4>
+                        <p class="client-position">🏢 مدير شركة سياحة</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
+
+        <!-- شريط الشركاء -->
+        <div class="partners-bar fade-in">
+            <div class="partners-title">
+                <span class="ar-text">🏢 شركاء نجاحنا</span>
+                <span class="en-text" style="display: none;">🏢 Our Success Partners</span>
+            </div>
+            <div class="partners-logos">
+                <div class="partner-logo">
+                    <img src="https://cdn-icons-png.flaticon.com/512/732/732221.png" alt="Google" loading="lazy" width="40" height="40">
+                    <span>Google Partner</span>
+                </div>
+                <div class="partner-logo">
+                    <img src="https://cdn-icons-png.flaticon.com/512/5968/5968764.png" alt="Facebook" loading="lazy" width="40" height="40">
+                    <span>Facebook Partner</span>
+                </div>
+                <div class="partner-logo">
+                    <img src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png" alt="Fiverr" loading="lazy" width="40" height="40">
+                    <span>Top Rated</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- إحصائيات رائعة -->
+        <div class="testimonial-stats-bar">
+            <div class="stats-item">
+                <div class="stats-icon">😊</div>
+                <div class="stats-content">
+                    <div class="stats-number" data-count="200">0</div>
+                    <div class="stats-label">عميل سعيد</div>
+                </div>
+            </div>
+            <div class="stats-item">
+                <div class="stats-icon">⭐</div>
+                <div class="stats-content">
+                    <div class="stats-number" data-count="4.9">0</div>
+                    <div class="stats-label">تقييم عام</div>
+                </div>
+            </div>
+            <div class="stats-item">
+                <div class="stats-icon">🎯</div>
+                <div class="stats-content">
+                    <div class="stats-number" data-count="98">0</div>
+                    <div class="stats-label">نسبة رضا</div>
+                </div>
+            </div>
+            <div class="stats-item">
+                <div class="stats-icon">⚡</div>
+                <div class="stats-content">
+                    <div class="stats-number" data-count="24">0</div>
+                    <div class="stats-label">ساعة دعم</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- زر تحفيزي -->
+        <div class="cta-testimonial fade-in">
+            <div class="cta-content">
+                <h3>
+                    <span class="ar-text">💬 جرب بنفسك وكن التالي في قائمة الناجحين!</span>
+                    <span class="en-text" style="display: none;">💬 Try It Yourself and Be Next on the Success List!</span>
+                </h3>
+                <p>
+                    <span class="ar-text">احجز استشارة مجانية اليوم وابدأ رحلة نجاحك الرقمي مع فريق متخصص يدعمك خطوة بخطوة 🚀</span>
+                    <span class="en-text" style="display: none;">Book a free consultation today and start your digital success journey with a specialized team supporting you step by step 🚀</span>
+                </p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn btn-primary">
+                        <i class="fas fa-calendar-check"></i>
+                        <span class="ar-text">احجز استشارة مجانية 🎯</span>
+                        <span class="en-text" style="display: none;">Book Free Consultation 🎯</span>
+                    </a>
+                    <a href="https://wa.me/201508902659" target="_blank" class="btn btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                        <span class="ar-text">كلمنا على واتساب 💬</span>
+                        <span class="en-text" style="display: none;">Chat on WhatsApp 💬</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- قسم الإنجازات -->
     <section class="achievements">
@@ -2850,7 +1063,7 @@
                     </div>
                 </div>
                 <div class="about-image fade-in">
-                    <img src="imgs/بصمه-تك.jpg" alt="فريق بصمة تك المحترف - أفضل شركة برمجة في مصر" loading="lazy" class="float-animation">
+                    <img src="imgs/بصمه-تك.jpg" alt="فريق بصمة تك المحترف - أفضل شركة برمجة في مصر" loading="lazy" class="float-animation" width="600" height="400">
                 </div>
             </div>
         </div>
@@ -2871,7 +1084,7 @@
             </div>
 
             <div class="faq-container">
-                <div class="faq-item fade-in">
+                <div class="faq-item">
                     <div class="faq-question">
                         <span class="ar-text">كام تكلفة تصميم موقع؟ 💰</span>
                         <span class="en-text" style="display: none;">How much does a website cost? 💰</span>
@@ -2885,7 +1098,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item fade-in">
+                <div class="faq-item">
                     <div class="faq-question">
                         <span class="ar-text">قد إيه يستغرق وقت تصميم موقع؟ ⏰</span>
                         <span class="en-text" style="display: none;">How long does it take to design a website? ⏰</span>
@@ -2899,7 +1112,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item fade-in">
+                <div class="faq-item">
                     <div class="faq-question">
                         <span class="ar-text">هل بتقدموا ضمان على الشغل؟ ✅</span>
                         <span class="en-text" style="display: none;">Do you offer work guarantee? ✅</span>
@@ -3083,7 +1296,7 @@
             <div class="footer-content">
                 <div class="footer-about">
                     <div class="footer-logo">
-                        <img src="./imgs/بصمه-تك.webp" alt="بصمة تك - شعار الشركة" loading="lazy">
+                        <img src="./imgs/بصمه-تك.webp" alt="بصمة تك - شعار الشركة" loading="lazy" width="40" height="40">
                         <span class="ar-text">بصمة تك</span>
                         <span class="en-text" style="display: none;">Basma Tech</span>
                     </div>
@@ -3120,7 +1333,7 @@
                                 <span class="en-text" style="display: none;">Portfolio 🎨</span>
                             </a></li>
                         <li><a href="#about">
-                                <span class="ar-text">ليه نحنا؟ 🤔</span>
+                                <span class="ar-text">ليه إحنا؟ 🤔</span>
                                 <span class="en-text" style="display: none;">Why Us? 🤔</span>
                             </a></li>
                     </ul>
@@ -3166,630 +1379,7 @@
         <i class="fas fa-chevron-up"></i>
     </div>
 
-    <script>
-        // ============================================
-        // كود جافاسكريبت مع إضافات إبداعية مميزة
-        // ============================================
-
-        // 1. Loading Screen محسن
-        const loadingScreen = document.getElementById('loadingScreen');
-        
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                loadingScreen.style.opacity = '0';
-                setTimeout(() => {
-                    loadingScreen.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                    // تشغيل تأثير الألعاب النارية بعد التحميل
-                    createFireworks();
-                }, 500);
-            }, 1500);
-            
-            applyState();
-        });
-
-        // 2. Theme & Language State
-        const state = {
-            theme: localStorage.getItem('theme') || 'light',
-            lang: localStorage.getItem('lang') || 'ar'
-        };
-
-        const body = document.body;
-        const themeBtn = document.getElementById('themeToggle');
-        const langBtn = document.getElementById('languageToggle');
-
-        function applyState() {
-            if (state.theme === 'dark') {
-                body.classList.add('dark-mode');
-                if (themeBtn) {
-                    themeBtn.innerHTML = '<i class="fas fa-sun"></i>';
-                }
-            } else {
-                body.classList.remove('dark-mode');
-                if (themeBtn) {
-                    themeBtn.innerHTML = '<i class="fas fa-moon"></i>';
-                }
-            }
-            
-            body.classList.remove('ar', 'en');
-            body.classList.add(state.lang);
-            
-            document.documentElement.setAttribute('dir', state.lang === 'ar' ? 'rtl' : 'ltr');
-            document.documentElement.setAttribute('lang', state.lang);
-            
-            updateTextVisibility();
-            updateLanguageButton();
-        }
-
-        function updateTextVisibility() {
-            const arTexts = document.querySelectorAll('.ar-text');
-            const enTexts = document.querySelectorAll('.en-text');
-            
-            if (state.lang === 'ar') {
-                arTexts.forEach(text => {
-                    text.style.display = 'inline';
-                });
-                enTexts.forEach(text => {
-                    text.style.display = 'none';
-                });
-            } else {
-                arTexts.forEach(text => {
-                    text.style.display = 'none';
-                });
-                enTexts.forEach(text => {
-                    text.style.display = 'inline';
-                });
-            }
-        }
-
-        function updateLanguageButton() {
-            if (!langBtn) return;
-            
-            const arSpan = langBtn.querySelector('.ar-text');
-            const enSpan = langBtn.querySelector('.en-text');
-            
-            if (state.lang === 'ar') {
-                if (arSpan) {
-                    arSpan.textContent = 'EN';
-                    arSpan.style.display = 'inline';
-                }
-                if (enSpan) {
-                    enSpan.style.display = 'none';
-                }
-            } else {
-                if (enSpan) {
-                    enSpan.textContent = 'AR';
-                    enSpan.style.display = 'inline';
-                }
-                if (arSpan) {
-                    arSpan.style.display = 'none';
-                }
-            }
-        }
-
-        // 3. Toggle Events
-        if (themeBtn) {
-            themeBtn.addEventListener('click', () => {
-                state.theme = state.theme === 'light' ? 'dark' : 'light';
-                localStorage.setItem('theme', state.theme);
-                applyState();
-                showToast('success', state.lang === 'ar' ? 'تم تغيير الوضع! 🌙' : 'Theme changed! 🌙');
-                createSparkles(themeBtn);
-            });
-        }
-
-        if (langBtn) {
-            langBtn.addEventListener('click', () => {
-                state.lang = state.lang === 'ar' ? 'en' : 'ar';
-                localStorage.setItem('lang', state.lang);
-                applyState();
-                showToast('success', state.lang === 'ar' ? 'تم تغيير اللغة! 🌍' : 'Language changed! 🌍');
-                createSparkles(langBtn);
-            });
-        }
-
-        // 4. Mobile Menu
-        const menuBtn = document.getElementById('mobileMenuBtn');
-        const nav = document.getElementById('mainNav');
-        const navLinks = document.querySelectorAll('.nav-link');
-
-        if (menuBtn && nav) {
-            menuBtn.addEventListener('click', () => {
-                nav.classList.toggle('active');
-                const icon = menuBtn.querySelector('i');
-                if (icon) {
-                    icon.classList.toggle('fa-bars');
-                    icon.classList.toggle('fa-times');
-                }
-                
-                if (nav.classList.contains('active')) {
-                    document.body.style.overflow = 'hidden';
-                } else {
-                    document.body.style.overflow = 'auto';
-                }
-            });
-        }
-
-        if (navLinks.length > 0) {
-            navLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    if (nav) {
-                        nav.classList.remove('active');
-                    }
-                    if (menuBtn) {
-                        const icon = menuBtn.querySelector('i');
-                        if (icon) {
-                            icon.classList.remove('fa-times');
-                            icon.classList.add('fa-bars');
-                        }
-                    }
-                    document.body.style.overflow = 'auto';
-                    createSparkles(link);
-                });
-            });
-        }
-
-        // 5. Scroll Animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-        // 6. Active Link Highlight on Scroll
-        window.addEventListener('scroll', () => {
-            let current = '';
-            const sections = document.querySelectorAll('section[id]');
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (window.pageYOffset >= sectionTop - 150) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-
-            const floatingNav = document.getElementById('floatingNav');
-            if (floatingNav) {
-                if (window.scrollY > 500) {
-                    floatingNav.classList.add('visible');
-                } else {
-                    floatingNav.classList.remove('visible');
-                }
-            }
-
-            const header = document.querySelector('header');
-            if (header) {
-                if (window.scrollY > 100) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            }
-        });
-
-        // 7. Contact Form Submission
-        const contactForm = document.getElementById('contactForm');
-        if (contactForm) {
-            contactForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                
-                const btn = contactForm.querySelector('button[type="submit"]');
-                const originalText = btn.innerHTML;
-                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-                btn.disabled = true;
-
-                const formData = {
-                    name: document.getElementById('name').value,
-                    phone: document.getElementById('phone').value,
-                    email: document.getElementById('email').value,
-                    service: document.getElementById('service').value,
-                    message: document.getElementById('message').value,
-                    source: "New Website Form - Basma Tech",
-                    language: state.lang,
-                    date: new Date().toISOString()
-                };
-
-                try {
-                    const response = await fetch("https://cloud.activepieces.com/api/v1/webhooks/uOd8Fc1RHZogMnn3JDxtQ/sync", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify(formData)
-                    });
-
-                    if (response.ok) {
-                        showToast('success', state.lang === 'ar' ? 'تم الإرسال! هنكلمك خلال 24 ساعة! 🎉' : 'Sent! We\'ll contact you within 24 hours! 🎉');
-                        contactForm.reset();
-                        createFireworks();
-                        
-                        setTimeout(() => {
-                            showToast('success', state.lang === 'ar' ? 'شكراً لثقتك في بصمة تك! 😊' : 'Thanks for trusting Basma Tech! 😊');
-                        }, 2000);
-                    } else {
-                        throw new Error('Network response was not ok');
-                    }
-                } catch (error) {
-                    showToast('error', state.lang === 'ar' ? 'حدث خطأ، حاول مرة أخرى.' : 'Error sending message.');
-                } finally {
-                    btn.innerHTML = originalText;
-                    btn.disabled = false;
-                }
-            });
-        }
-
-        // 8. Toast Notification Logic
-        function showToast(type, message) {
-            const container = document.getElementById('toastContainer');
-            if (!container) return;
-            
-            const toast = document.createElement('div');
-            toast.className = 'toast';
-            toast.style.borderRightColor = type === 'success' ? '#10b981' : '#ef4444';
-            toast.innerHTML = `
-                <div class="toast-icon">
-                    <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}" 
-                       style="color:${type === 'success' ? '#10b981' : '#ef4444'}"></i>
-                </div>
-                <div class="toast-content">
-                    <h4 class="toast-title">${type === 'success' ? (state.lang === 'ar' ? 'نجاح! 🎉' : 'Success! 🎉') : (state.lang === 'ar' ? 'خطأ! ⚠️' : 'Error! ⚠️')}</h4>
-                    <p class="toast-message">${message}</p>
-                </div>
-                <button class="toast-close" onclick="this.parentElement.remove()">
-                    <i class="fas fa-times"></i>
-                </button>
-            `;
-            container.appendChild(toast);
-            setTimeout(() => {
-                toast.style.opacity = '0';
-                setTimeout(() => {
-                    if (toast.parentNode === container) {
-                        container.removeChild(toast);
-                    }
-                }, 300);
-            }, 5000);
-        }
-
-        // 9. Modal Logic for Project Details
-        const modal = document.getElementById('projectModal');
-        const modalTrigger = document.getElementById('projectAluminumTrigger');
-        const closeBtn = document.getElementById('modalClose');
-
-        if (modalTrigger && modal) {
-            modalTrigger.addEventListener('click', (e) => {
-                e.preventDefault();
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
-        }
-
-        if (closeBtn && modal) {
-            closeBtn.addEventListener('click', () => {
-                modal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            });
-        }
-
-        if (modal) {
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
-            });
-        }
-
-        // 10. Back to Top Button
-        const backToTopBtn = document.getElementById('backToTop');
-        
-        if (backToTopBtn) {
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 300) {
-                    backToTopBtn.classList.add('visible');
-                } else {
-                    backToTopBtn.classList.remove('visible');
-                }
-            });
-
-            backToTopBtn.addEventListener('click', () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-                createSparkles(backToTopBtn);
-            });
-        }
-
-        // 11. Floating Navigation
-        const floatingNav = document.getElementById('floatingNav');
-        if (floatingNav) {
-            floatingNav.addEventListener('click', (e) => {
-                if (e.target.tagName === 'A' || e.target.tagName === 'I') {
-                    showToast('success', state.lang === 'ar' ? 'بنتواصل معاك قريب! 😊' : 'We\'ll contact you soon! 😊');
-                    createSparkles(e.target);
-                }
-            });
-        }
-
-        // 12. إغلاق القائمة عند النقر خارجها
-        document.addEventListener('click', (e) => {
-            if (nav && nav.classList.contains('active') && 
-                !nav.contains(e.target) && 
-                menuBtn && !menuBtn.contains(e.target) &&
-                window.innerWidth <= 992) {
-                nav.classList.remove('active');
-                const icon = menuBtn.querySelector('i');
-                if (icon) {
-                    icon.classList.add('fa-bars');
-                    icon.classList.remove('fa-times');
-                }
-                document.body.style.overflow = 'auto';
-            }
-        });
-
-        // 13. عداد تنازلي
-        function updateCountdown() {
-            const now = new Date();
-            const endDate = new Date(now.getFullYear(), now.getMonth() + 1, 1);
-            
-            const timeLeft = endDate - now;
-            
-            if (timeLeft > 0) {
-                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-                
-                document.getElementById('days').textContent = days.toString().padStart(2, '0');
-                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-                
-                // تأثير خاص عندما يصل العداد لـ 10 ثواني
-                if (seconds <= 10) {
-                    document.getElementById('seconds').style.color = '#ef4444';
-                    document.getElementById('seconds').style.animation = 'pulse 1s infinite';
-                }
-            }
-        }
-        
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
-
-        // 14. تأثير الألعاب النارية
-        function createFireworks() {
-            const fireworks = document.getElementById('fireworks');
-            fireworks.style.display = 'block';
-            
-            const colors = ['#4f46e5', '#f97316', '#10b981', '#FFD700', '#ef4444'];
-            
-            for (let i = 0; i < 50; i++) {
-                setTimeout(() => {
-                    const firework = document.createElement('div');
-                    firework.className = 'firework';
-                    firework.style.left = `${Math.random() * 100}%`;
-                    firework.style.top = `${Math.random() * 100}%`;
-                    firework.style.background = colors[Math.floor(Math.random() * colors.length)];
-                    firework.style.setProperty('--explode-y', `${Math.random() * 100}vh`);
-                    
-                    fireworks.appendChild(firework);
-                    
-                    setTimeout(() => {
-                        firework.remove();
-                    }, 1000);
-                }, i * 50);
-            }
-            
-            setTimeout(() => {
-                fireworks.style.display = 'none';
-            }, 3000);
-        }
-
-        // 15. تأثير النجوم المتألقة
-        function createSparkles(element) {
-            const rect = element.getBoundingClientRect();
-            const x = rect.left + rect.width / 2;
-            const y = rect.top + rect.height / 2;
-            
-            for (let i = 0; i < 5; i++) {
-                const sparkle = document.createElement('div');
-                sparkle.className = 'sparkle';
-                sparkle.style.left = `${x + (Math.random() - 0.5) * 50}px`;
-                sparkle.style.top = `${y + (Math.random() - 0.5) * 50}px`;
-                sparkle.style.animationDelay = `${i * 0.1}s`;
-                
-                document.body.appendChild(sparkle);
-                
-                setTimeout(() => {
-                    sparkle.remove();
-                }, 1000);
-            }
-        }
-
-        // 16. تأثير الأرقام العدادة
-        function animateCounters() {
-            const counters = document.querySelectorAll('.stat-number[data-count]');
-            
-            counters.forEach(counter => {
-                const target = parseInt(counter.getAttribute('data-count'));
-                const increment = target / 100;
-                let current = 0;
-                
-                const updateCounter = () => {
-                    if (current < target) {
-                        current += increment;
-                        counter.textContent = Math.ceil(current) + '+';
-                        setTimeout(updateCounter, 20);
-                    } else {
-                        counter.textContent = target + '+';
-                    }
-                };
-                
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            updateCounter();
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                });
-                
-                observer.observe(counter);
-            });
-        }
-
-        // 17. FAQ Accordion
-        const faqItems = document.querySelectorAll('.faq-item');
-        faqItems.forEach(item => {
-            const question = item.querySelector('.faq-question');
-            question.addEventListener('click', () => {
-                item.classList.toggle('active');
-            });
-        });
-
-        // 18. تأثيرات عند التحميل
-        document.addEventListener('DOMContentLoaded', () => {
-            applyState();
-            updateTextVisibility();
-            updateLanguageButton();
-            
-            setTimeout(() => {
-                animateCounters();
-                
-                const elements = document.querySelectorAll('.service-card, .portfolio-item');
-                elements.forEach((el, index) => {
-                    setTimeout(() => {
-                        el.classList.add('visible');
-                    }, index * 100);
-                });
-            }, 500);
-            
-            setTimeout(() => {
-                showToast('success', state.lang === 'ar' ? 'مرحباً في بصمة تك! 🎉' : 'Welcome to Basma Tech! 🎉');
-            }, 2000);
-            
-            // تأثير خاص عند التمرير للأسفل
-            let lastScroll = 0;
-            window.addEventListener('scroll', () => {
-                const currentScroll = window.pageYOffset;
-                
-                if (currentScroll > lastScroll) {
-                    // التمرير للأسفل
-                    document.querySelectorAll('.fade-in:not(.visible)').forEach((el, index) => {
-                        if (el.getBoundingClientRect().top < window.innerHeight - 100) {
-                            setTimeout(() => {
-                                el.classList.add('visible');
-                            }, index * 100);
-                        }
-                    });
-                }
-                
-                lastScroll = currentScroll;
-            });
-        });
-
-        // 19. تأثيرات تفاعلية للأزرار
-        document.querySelectorAll('.btn').forEach(btn => {
-            btn.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-5px) scale(1.05)';
-                createSparkles(this);
-            });
-            
-            btn.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-            
-            btn.addEventListener('click', function() {
-                createSparkles(this);
-            });
-        });
-
-        // 20. عدد الزوار (محاكاة)
-        let visitorCount = localStorage.getItem('visitorCount') || Math.floor(Math.random() * 50) + 200;
-        visitorCount = parseInt(visitorCount) + 1;
-        localStorage.setItem('visitorCount', visitorCount);
-        
-        const updateVisitorCount = () => {
-            const statNumbers = document.querySelectorAll('.stat-number[data-count="200"]');
-            if (statNumbers[0]) {
-                statNumbers[0].setAttribute('data-count', visitorCount);
-            }
-        };
-        
-        setTimeout(updateVisitorCount, 1000);
-
-        // 21. تأثير الكتابة في النصوص
-        function typeWriterEffect() {
-            const typingElements = document.querySelectorAll('.typing-text');
-            typingElements.forEach(el => {
-                const text = el.textContent;
-                el.textContent = '';
-                let i = 0;
-                
-                function type() {
-                    if (i < text.length) {
-                        el.textContent += text.charAt(i);
-                        i++;
-                        setTimeout(type, 100);
-                    }
-                }
-                
-                setTimeout(type, 1000);
-            });
-        }
-        
-        setTimeout(typeWriterEffect, 1500);
-
-        // 22. تحسين تجربة اللمس للجوال
-        document.addEventListener('touchstart', function() {}, {passive: true});
-
-        // 23. تأثير خاص عند النقر على العروض
-        document.querySelectorAll('.offer-card .btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                showToast('success', state.lang === 'ar' ? 'تم اختيار الباقة بنجاح! 🎯' : 'Package selected successfully! 🎯');
-                createFireworks();
-                
-                setTimeout(() => {
-                    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-                }, 500);
-            });
-        });
-
-        // 24. تحديث النصوص الديناميكية
-        function updateDynamicTexts() {
-            const dynamicTexts = [
-                '😊 عميل فرحان',
-                '🚀 مشروع ناجح',
-                '📈 زيادة المبيعات',
-                '🎯 كلمة مفتاحية',
-                '🥇 الصفحة الأولى'
-            ];
-            
-            let currentIndex = 0;
-            setInterval(() => {
-                const elements = document.querySelectorAll('.stat-label');
-                if (elements.length > 0) {
-                    elements.forEach(el => {
-                        if (el.querySelector('.ar-text')) {
-                            el.querySelector('.ar-text').textContent = dynamicTexts[currentIndex];
-                        }
-                    });
-                    currentIndex = (currentIndex + 1) % dynamicTexts.length;
-                }
-            }, 3000);
-        }
-        
-        setTimeout(updateDynamicTexts, 5000);
-    </script>
+    <!-- JavaScript -->
+    <script src="js/main.min.js" defer></script>
 </body>
 </html>
